@@ -8,12 +8,12 @@ import install
 
 
 class ManifestTests(unittest.TestCase):
-    def test_manifest_has_19_unique_skills(self):
+    def test_manifest_has_20_unique_skills(self):
         skills = install.load_manifest(Path("skills-manifest.json"))
 
-        self.assertEqual(len(skills), 19)
-        self.assertEqual(len({skill.name for skill in skills}), 19)
-        self.assertEqual(len({skill.destination for skill in skills}), 19)
+        self.assertEqual(len(skills), 20)
+        self.assertEqual(len({skill.name for skill in skills}), 20)
+        self.assertEqual(len({skill.destination for skill in skills}), 20)
 
     def test_manifest_rejects_duplicate_destination(self):
         with tempfile.TemporaryDirectory() as temp_name:
@@ -127,4 +127,3 @@ class InstallerTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
