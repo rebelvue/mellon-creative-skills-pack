@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "skills": [
+    {
+      "name": "design-taste-frontend",
+      "category": "Design and UI",
+      "repo": "Leonxlnx/taste-skill",
+      "path": "skills/taste-skill",
+      "destination": "design-taste-frontend"
+    },
+    {
+      "name": "emil-design-eng",
+      "category": "Design and UI",
+      "repo": "emilkowalski/skills",
+      "path": "skills/emil-design-eng"
+    },
+    {
+      "name": "impeccable",
+      "category": "Design and UI",
+      "repo": "pbakaus/impeccable",
+      "path": ".agents/skills/impeccable"
+    },
+    {
+      "name": "ui-ux-pro-max",
+      "category": "Design and UI",
+      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "path": ".claude/skills/ui-ux-pro-max"
+    },
+    {
+      "name": "frontend-design",
+      "category": "Design and UI",
+      "repo": "anthropics/skills",
+      "path": "skills/frontend-design"
+    },
+    {
+      "name": "brand-guidelines",
+      "category": "Design and UI",
+      "repo": "anthropics/skills",
+      "path": "skills/brand-guidelines"
+    },
+    {
+      "name": "theme-factory",
+      "category": "Design and UI",
+      "repo": "anthropics/skills",
+      "path": "skills/theme-factory"
+    },
+    {
+      "name": "canvas-design",
+      "category": "Design and UI",
+      "repo": "anthropics/skills",
+      "path": "skills/canvas-design"
+    },
+    {
+      "name": "remotion-create",
+      "category": "Video Editing and Motion Graphics",
+      "repo": "remotion-dev/skills",
+      "path": "skills/remotion-create"
+    },
+    {
+      "name": "remotion-markup",
+      "category": "Video Editing and Motion Graphics",
+      "repo": "remotion-dev/skills",
+      "path": "skills/remotion-markup"
+    },
+    {
+      "name": "remotion-captions",
+      "category": "Video Editing and Motion Graphics",
+      "repo": "remotion-dev/skills",
+      "path": "skills/remotion-captions"
+    },
+    {
+      "name": "remotion-render",
+      "category": "Video Editing and Motion Graphics",
+      "repo": "remotion-dev/skills",
+      "path": "skills/remotion-render"
+    },
+    {
+      "name": "grill-me",
+      "category": "Planning and Workflow",
+      "repo": "mattpocock/skills",
+      "path": "skills/productivity/grill-me"
+    },
+    {
+      "name": "grilling",
+      "category": "Planning and Workflow",
+      "repo": "mattpocock/skills",
+      "path": "skills/productivity/grilling"
+    },
+    {
+      "name": "to-spec",
+      "category": "Planning and Workflow",
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/to-spec"
+    },
+    {
+      "name": "to-tickets",
+      "category": "Planning and Workflow",
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/to-tickets"
+    },
+    {
+      "name": "tdd",
+      "category": "Planning and Workflow",
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/tdd"
+    },
+    {
+      "name": "improve-codebase-architecture",
+      "category": "Planning and Workflow",
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/improve-codebase-architecture"
+    },
+    {
+      "name": "setup-matt-pocock-skills",
+      "category": "Planning and Workflow",
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/setup-matt-pocock-skills"
+    }
+  ]
+}
+
