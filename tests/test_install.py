@@ -22,8 +22,8 @@ class ManifestTests(unittest.TestCase):
                 json.dumps(
                     {
                         "skills": [
-                            {"name": "one", "category": "x", "repo": "a/b", "path": "skills/one", "destination": "same"},
-                            {"name": "two", "category": "x", "repo": "a/b", "path": "skills/two", "destination": "same"},
+                            {"name": "one", "category": "x", "repo": "a/b", "ref": "abc123", "path": "skills/one", "destination": "same"},
+                            {"name": "two", "category": "x", "repo": "a/b", "ref": "abc123", "path": "skills/two", "destination": "same"},
                         ]
                     }
                 ),
@@ -32,6 +32,46 @@ class ManifestTests(unittest.TestCase):
 
             with self.assertRaisesRegex(ValueError, "duplicate destination"):
                 install.load_manifest(path)
+
+    def test_manifest_requires_ref(self):
+        with tempfile.TemporaryDirectory() as temp_name:
+            path = Path(temp_name) / "manifest.json"
+            path.write_text(
+                json.dumps({"skills": [{"name": "one", "category": "x", "repo": "a/b", "path": "skills/one"}]}),
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(ValueError, "missing required string field: ref"):
+                install.load_manifest(path)
+
+    def test_manifest_rejects_archive_url_override(self):
+        with tempfile.TemporaryDirectory() as temp_name:
+            path = Path(temp_name) / "manifest.json"
+            path.write_text(
+                json.dumps(
+                    {
+                        "skills": [
+                            {
+                                "name": "one",
+                                "category": "x",
+                                "repo": "a/b",
+                                "ref": "abc123",
+                                "path": "skills/one",
+                                "archive_url": "https://example.com/repo.zip",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(ValueError, "archive_url is not supported"):
+                install.load_manifest(path)
+
+    def test_archive_url_uses_pinned_ref(self):
+        skill = install.Skill("one", "x", "a/b", "abc123", "skills/one", "one")
+
+        self.assertEqual(install.archive_url_for(skill), "https://codeload.github.com/a/b/zip/abc123")
 
 
 class InstallerTests(unittest.TestCase):
@@ -60,13 +100,18 @@ class InstallerTests(unittest.TestCase):
                 name="demo-skill",
                 category="Test",
                 repo="local/demo",
+                ref="main",
                 path="skills/demo-skill",
                 destination="demo-skill",
-                archive_url=archive.as_uri(),
             )
+            original_archive_url_for = install.archive_url_for
+            install.archive_url_for = lambda _: archive.as_uri()
             dest = root / "dest"
 
-            result = install.install_skill(skill, dest, update=False, dry_run=False)
+            try:
+                result = install.install_skill(skill, dest, update=False, dry_run=False)
+            finally:
+                install.archive_url_for = original_archive_url_for
 
             self.assertEqual(result.status, "installed")
             self.assertTrue((dest / "demo-skill" / "SKILL.md").is_file())
@@ -80,7 +125,7 @@ class InstallerTests(unittest.TestCase):
             existing = dest / "demo-skill"
             existing.mkdir(parents=True)
             (existing / "SKILL.md").write_text("---\nname: demo-skill\ndescription: Old\n---\n", encoding="utf-8")
-            skill = install.Skill("demo-skill", "Test", "local/demo", "skills/demo-skill", "demo-skill", archive.as_uri())
+            skill = install.Skill("demo-skill", "Test", "local/demo", "main", "skills/demo-skill", "demo-skill")
 
             result = install.install_skill(skill, dest, update=False, dry_run=False)
 
@@ -95,9 +140,14 @@ class InstallerTests(unittest.TestCase):
             existing = dest / "demo-skill"
             existing.mkdir(parents=True)
             (existing / "SKILL.md").write_text("---\nname: demo-skill\ndescription: Old\n---\n", encoding="utf-8")
-            skill = install.Skill("demo-skill", "Test", "local/demo", "skills/demo-skill", "demo-skill", archive.as_uri())
+            skill = install.Skill("demo-skill", "Test", "local/demo", "main", "skills/demo-skill", "demo-skill")
+            original_archive_url_for = install.archive_url_for
+            install.archive_url_for = lambda _: archive.as_uri()
 
-            result = install.install_skill(skill, dest, update=True, dry_run=False)
+            try:
+                result = install.install_skill(skill, dest, update=True, dry_run=False)
+            finally:
+                install.archive_url_for = original_archive_url_for
 
             self.assertEqual(result.status, "installed")
             self.assertIn("New", (existing / "SKILL.md").read_text(encoding="utf-8"))
@@ -106,9 +156,14 @@ class InstallerTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_name:
             root = Path(temp_name)
             archive = self.build_archive(root, name="wrong-name")
-            skill = install.Skill("demo-skill", "Test", "local/demo", "skills/demo-skill", "demo-skill", archive.as_uri())
+            skill = install.Skill("demo-skill", "Test", "local/demo", "main", "skills/demo-skill", "demo-skill")
+            original_archive_url_for = install.archive_url_for
+            install.archive_url_for = lambda _: archive.as_uri()
 
-            result = install.install_skill(skill, root / "dest", update=False, dry_run=False)
+            try:
+                result = install.install_skill(skill, root / "dest", update=False, dry_run=False)
+            finally:
+                install.archive_url_for = original_archive_url_for
 
             self.assertEqual(result.status, "failed")
             self.assertIn("expected 'demo-skill'", result.message)
@@ -116,7 +171,7 @@ class InstallerTests(unittest.TestCase):
     def test_dry_run_does_not_create_destination(self):
         with tempfile.TemporaryDirectory() as temp_name:
             root = Path(temp_name)
-            skill = install.Skill("demo-skill", "Test", "local/demo", "skills/demo-skill", "demo-skill")
+            skill = install.Skill("demo-skill", "Test", "local/demo", "main", "skills/demo-skill", "demo-skill")
             dest = root / "dest"
 
             result = install.install_skill(skill, dest, update=False, dry_run=True)
