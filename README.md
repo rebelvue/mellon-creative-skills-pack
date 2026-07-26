@@ -47,6 +47,7 @@ Design and UI:
 
 Video editing and motion graphics:
 
+- `hyperframes`
 - `remotion-create`
 - `remotion-markup`
 - `remotion-captions`
@@ -88,4 +89,3 @@ Use this prompt with Claude:
 If installation fails for a skill, read the failure row in the summary. Common causes are network errors, a changed upstream repository path, or a destination directory that is not writable.
 
 Use `--dry-run` to confirm the destination and manifest. Use `--update` only when you want this installer to replace existing copies of the declared skills.
-

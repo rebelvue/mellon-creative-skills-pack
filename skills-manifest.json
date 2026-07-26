@@ -51,6 +51,12 @@
       "path": "skills/canvas-design"
     },
     {
+      "name": "hyperframes",
+      "category": "Video Editing and Motion Graphics",
+      "repo": "heygen-com/hyperframes",
+      "path": "skills/hyperframes"
+    },
+    {
       "name": "remotion-create",
       "category": "Video Editing and Motion Graphics",
       "repo": "remotion-dev/skills",
@@ -118,4 +124,3 @@
     }
   ]
 }
-
