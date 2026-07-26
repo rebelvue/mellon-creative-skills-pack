@@ -4,6 +4,8 @@ One installer for the creative and workflow skills collected for Mellon. It is m
 
 The pack does not vendor third-party skill files. It downloads each skill from its original GitHub repository, installs only the declared skill directory, and validates `SKILL.md` before reporting success.
 
+Each upstream repository is pinned to an explicit commit in `skills-manifest.json`. Running `--update` updates your local installed skills to the pinned commits in this repository, not to whatever upstream default branches contain later.
+
 ## Install
 
 Clone this repository, inspect it, then run:
@@ -68,6 +70,7 @@ Planning and workflow:
 - Existing skills are skipped unless `--update` is set.
 - Downloaded repositories are never executed.
 - Only repositories and paths declared in `skills-manifest.json` are used.
+- Each download uses the pinned `ref` declared in `skills-manifest.json`.
 - Every installed skill must contain a readable `SKILL.md` with matching `name` metadata and a non-empty `description`.
 - A failed skill does not stop unrelated skills from installing.
 - The command exits non-zero if any requested skill fails.

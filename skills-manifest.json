@@ -6,121 +6,141 @@
       "category": "Design and UI",
       "repo": "Leonxlnx/taste-skill",
       "path": "skills/taste-skill",
-      "destination": "design-taste-frontend"
+      "destination": "design-taste-frontend",
+      "ref": "e988add20dab0fa97d7a76781c48961c8184288e"
     },
     {
       "name": "emil-design-eng",
       "category": "Design and UI",
       "repo": "emilkowalski/skills",
-      "path": "skills/emil-design-eng"
+      "path": "skills/emil-design-eng",
+      "ref": "e695d13cb298db0f46d5ef05be2ad13fa12908a6"
     },
     {
       "name": "impeccable",
       "category": "Design and UI",
       "repo": "pbakaus/impeccable",
-      "path": ".agents/skills/impeccable"
+      "path": ".agents/skills/impeccable",
+      "ref": "d272b9bd5dcfcb52d32482d192d06045ca31c503"
     },
     {
       "name": "ui-ux-pro-max",
       "category": "Design and UI",
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
-      "path": ".claude/skills/ui-ux-pro-max"
+      "path": ".claude/skills/ui-ux-pro-max",
+      "ref": "1307d97a72e6c1cda572cb65471ae5ce82995218"
     },
     {
       "name": "frontend-design",
       "category": "Design and UI",
       "repo": "anthropics/skills",
-      "path": "skills/frontend-design"
+      "path": "skills/frontend-design",
+      "ref": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb"
     },
     {
       "name": "brand-guidelines",
       "category": "Design and UI",
       "repo": "anthropics/skills",
-      "path": "skills/brand-guidelines"
+      "path": "skills/brand-guidelines",
+      "ref": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb"
     },
     {
       "name": "theme-factory",
       "category": "Design and UI",
       "repo": "anthropics/skills",
-      "path": "skills/theme-factory"
+      "path": "skills/theme-factory",
+      "ref": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb"
     },
     {
       "name": "canvas-design",
       "category": "Design and UI",
       "repo": "anthropics/skills",
-      "path": "skills/canvas-design"
+      "path": "skills/canvas-design",
+      "ref": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb"
     },
     {
       "name": "hyperframes",
       "category": "Video Editing and Motion Graphics",
       "repo": "heygen-com/hyperframes",
-      "path": "skills/hyperframes"
+      "path": "skills/hyperframes",
+      "ref": "f500a42d9e27e21a0f685d32d2915d8b93dc6e56"
     },
     {
       "name": "remotion-create",
       "category": "Video Editing and Motion Graphics",
       "repo": "remotion-dev/skills",
-      "path": "skills/remotion-create"
+      "path": "skills/remotion-create",
+      "ref": "5e2daf82fd2d4468500ced14f6c5a0c8a54f9470"
     },
     {
       "name": "remotion-markup",
       "category": "Video Editing and Motion Graphics",
       "repo": "remotion-dev/skills",
-      "path": "skills/remotion-markup"
+      "path": "skills/remotion-markup",
+      "ref": "5e2daf82fd2d4468500ced14f6c5a0c8a54f9470"
     },
     {
       "name": "remotion-captions",
       "category": "Video Editing and Motion Graphics",
       "repo": "remotion-dev/skills",
-      "path": "skills/remotion-captions"
+      "path": "skills/remotion-captions",
+      "ref": "5e2daf82fd2d4468500ced14f6c5a0c8a54f9470"
     },
     {
       "name": "remotion-render",
       "category": "Video Editing and Motion Graphics",
       "repo": "remotion-dev/skills",
-      "path": "skills/remotion-render"
+      "path": "skills/remotion-render",
+      "ref": "5e2daf82fd2d4468500ced14f6c5a0c8a54f9470"
     },
     {
       "name": "grill-me",
       "category": "Planning and Workflow",
       "repo": "mattpocock/skills",
-      "path": "skills/productivity/grill-me"
+      "path": "skills/productivity/grill-me",
+      "ref": "ed37663cc5fbef691ddfecd080dff42f7e7e350d"
     },
     {
       "name": "grilling",
       "category": "Planning and Workflow",
       "repo": "mattpocock/skills",
-      "path": "skills/productivity/grilling"
+      "path": "skills/productivity/grilling",
+      "ref": "ed37663cc5fbef691ddfecd080dff42f7e7e350d"
     },
     {
       "name": "to-spec",
       "category": "Planning and Workflow",
       "repo": "mattpocock/skills",
-      "path": "skills/engineering/to-spec"
+      "path": "skills/engineering/to-spec",
+      "ref": "ed37663cc5fbef691ddfecd080dff42f7e7e350d"
     },
     {
       "name": "to-tickets",
       "category": "Planning and Workflow",
       "repo": "mattpocock/skills",
-      "path": "skills/engineering/to-tickets"
+      "path": "skills/engineering/to-tickets",
+      "ref": "ed37663cc5fbef691ddfecd080dff42f7e7e350d"
     },
     {
       "name": "tdd",
       "category": "Planning and Workflow",
       "repo": "mattpocock/skills",
-      "path": "skills/engineering/tdd"
+      "path": "skills/engineering/tdd",
+      "ref": "ed37663cc5fbef691ddfecd080dff42f7e7e350d"
     },
     {
       "name": "improve-codebase-architecture",
       "category": "Planning and Workflow",
       "repo": "mattpocock/skills",
-      "path": "skills/engineering/improve-codebase-architecture"
+      "path": "skills/engineering/improve-codebase-architecture",
+      "ref": "ed37663cc5fbef691ddfecd080dff42f7e7e350d"
     },
     {
       "name": "setup-matt-pocock-skills",
       "category": "Planning and Workflow",
       "repo": "mattpocock/skills",
-      "path": "skills/engineering/setup-matt-pocock-skills"
+      "path": "skills/engineering/setup-matt-pocock-skills",
+      "ref": "ed37663cc5fbef691ddfecd080dff42f7e7e350d"
     }
   ]
 }

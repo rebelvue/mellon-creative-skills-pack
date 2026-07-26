@@ -37,9 +37,9 @@ class Skill:
     name: str
     category: str
     repo: str
+    ref: str
     path: str
     destination: str
-    archive_url: str | None = None
 
 
 @dataclass
@@ -63,7 +63,9 @@ def load_manifest(path: Path) -> list[Skill]:
     for index, raw in enumerate(data["skills"], start=1):
         if not isinstance(raw, dict):
             raise ValueError(f"skill #{index} must be an object")
-        for field in ("name", "category", "repo", "path"):
+        if "archive_url" in raw:
+            raise ValueError(f"skill {raw.get('name', index)} uses archive_url; archive_url is not supported")
+        for field in ("name", "category", "repo", "ref", "path"):
             if not isinstance(raw.get(field), str) or not raw[field].strip():
                 raise ValueError(f"skill #{index} missing required string field: {field}")
         name = raw["name"].strip()
@@ -74,17 +76,14 @@ def load_manifest(path: Path) -> list[Skill]:
             raise ValueError(f"duplicate destination: {destination}")
         seen_names.add(name)
         seen_destinations.add(destination)
-        archive_url = raw.get("archive_url")
-        if archive_url is not None and not isinstance(archive_url, str):
-            raise ValueError(f"skill {name} has non-string archive_url")
         skills.append(
             Skill(
                 name=name,
                 category=raw["category"].strip(),
                 repo=raw["repo"].strip(),
+                ref=raw["ref"].strip(),
                 path=raw["path"].strip().strip("/"),
                 destination=destination,
-                archive_url=archive_url,
             )
         )
     return skills
@@ -109,25 +108,8 @@ def choose_destination(target: str | None, explicit_dest: str | None) -> Path:
     return home / ".agents" / "skills"
 
 
-def read_json_url(url: str) -> dict[str, Any]:
-    request = urllib.request.Request(url, headers={"User-Agent": "mellon-creative-skills-pack"})
-    with urllib.request.urlopen(request, timeout=30, context=https_context()) as response:
-        return json.loads(response.read().decode("utf-8"))
-
-
-def default_branch(repo: str) -> str:
-    data = read_json_url(f"https://api.github.com/repos/{repo}")
-    branch = data.get("default_branch")
-    if not isinstance(branch, str) or not branch:
-        raise ValueError(f"could not determine default branch for {repo}")
-    return branch
-
-
 def archive_url_for(skill: Skill) -> str:
-    if skill.archive_url:
-        return skill.archive_url
-    branch = default_branch(skill.repo)
-    return f"https://codeload.github.com/{skill.repo}/zip/refs/heads/{branch}"
+    return f"https://codeload.github.com/{skill.repo}/zip/{skill.ref}"
 
 
 def download_archive(skill: Skill, temp_dir: Path) -> Path:
